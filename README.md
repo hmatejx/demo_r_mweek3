@@ -51,7 +51,9 @@ mort %>%
 
 # An example how to use the dataset in Tableau
 
-One can load the dataset to a Tableau and use the in-built recognition of EU NUTS regions by Tableau to plot the values geographically. My dashboard (VIP) can be accessed online [here](https://public.tableau.com/app/profile/hmatejx/viz/demo_r_mweek3_pjangrp3/NUTSlevel3?publish=yes). I've used the dashboard to generate the animation below, again showing the initial spread of COVID-19 in Northern Italy in March - April of 2020. I believe the data is compatible with geographic spreading.
+One can load the dataset to a Tableau and use the in-built recognition of EU NUTS regions by Tableau to plot the values geographically. My dashboard (VIP) can be accessed online [here](https://public.tableau.com/app/profile/hmatejx/viz/demo_r_mweek3_pjangrp3/NUTSlevel3?publish=yes).
+
+I've used the dashboard to generate the animation below, again showing the initial spread of COVID-19 in Northern Italy in March - April of 2020. I believe the data is compatible with geographic spreading.
 
 ![Northern Italy 2020 outbreak - animation](img/NUTS-level3-Bergamo.gif)
 

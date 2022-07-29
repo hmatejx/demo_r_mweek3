@@ -33,7 +33,7 @@ mort %>%
   theme_bw()
 ```
 
-![](D:\Devel\demo_r_mweek3\img\Italy_Lodi_Cremona_Bergamo_vs_Treviso_Venezia_Trieste.png)
+![](img\Italy_Lodi_Cremona_Bergamo_vs_Treviso_Venezia_Trieste.png)
 
 To see how extreme these events must have been in Lodi, Cremona, and Bergamo, one can plot the same subset of data on a larger timescale.
 
@@ -47,15 +47,15 @@ mort %>%
   theme_bw()
 ```
 
-![](D:\Devel\demo_r_mweek3\img\Italy_outbreak_2020.png)
+![](img\Italy_outbreak_2020.png)
 
 # An example how to use the dataset in Tableau
 
 One can load the dataset to a Tableau and use the in-built recognition of EU NUTS regions by Tableau to plot the values geographically. My dashboard (VIP) can be accessed online [here](https://public.tableau.com/app/profile/hmatejx/viz/demo_r_mweek3_pjangrp3/NUTSlevel3?publish=yes). I've used the dashboard to generate the animation below, again showing the initial spread of COVID-19 in Northern Italy in March - April of 2020. I believe the data is compatible with geographic spreading.
 
-![](D:\Devel\demo_r_mweek3\img\NUTS-level3-Bergamo.gif)
+![](img\NUTS-level3-Bergamo.gif)
 
 The animation below shows the complete Europe area from January 2020 - December 2021. Note that some countries are still missing (I don't know yet if this is a bug of the dataset or an incompatibility of the NUDS coding and version of Tableau Public that I'm using).
 
-![](D:\Devel\demo_r_mweek3\img\NUTS-level3.gif)
+![](img\NUTS-level3.gif)
 

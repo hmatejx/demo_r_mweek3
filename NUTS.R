@@ -195,21 +195,11 @@ mort %>%
 rm(mort.ASMR)
 
 
-# sanity plot
-mort %>%
-  filter(geo %in% c("ITC46", "ITC47", "ITH34", "ITH35", "ITH43"),
-         sex == "T", age == "ASMR",  date > "2014-01-01") %>%
-  ggplot(aes(x = date, y = rate, color = geo)) +
-  geom_line(size = 1) +
-  theme_bw()
-
-
 # save data frame as FST format
 write_fst(mort, "demo_r_mweek3_pjangrp3.fst", compress = 99)
 # save as TSV as well
 fwrite(mort, "demo_r_mweek3_pjangrp3.tsv", sep = "\t", quote = F, dec = ".", row.names = F)
-# mort <- as_tibble(read_fst("mort.fst"))
 
 
-# clean-up memory
+# clean-up memory afterwards
 gc()

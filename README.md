@@ -7,15 +7,15 @@ This dataset has been processed to generate population standardized rates mortal
 The data is provided for NUTS level 3 regions of Europe. See the [European NUTS 2021 classification](https://ec.europa.eu/eurostat/web/nuts/background) for more information about those regions.
 
 Features of the dataset:
- 	1. Region population counts go back to 2014, whereas the mortality data goes back to 2000 for some regions.
- 	2. The 2022 population (not provided) is linearly extrapolated the 2022 based on the 2020 - 2021 slope.
- 	3. During the year, the population is linearly interpolated to obtain an estimate of the population for a certain week of the year.
- 	4. In the original dataset there are death counts attributed to year 2021 week 99, which is ignored in the ASMR calculations for year 2021.
- 	5. The `UNK` age category is excluded from the ASMR calculation as well.
- 	6. Handling of dates... the data comes in year-week format, I did a quick & dirty "2021W11" -> "2021-01-01" + 11*weeks. This is only relevant for the `date` column to be used as a dimension for plotting. The dataset retains the original year & week columns.
- 	7. The dataset inherits bugs from the original data source, as well as new bugs that have been introduced during processing. **Beware - beta quality!**
- 	  * UK - mortality data not provided for years 2021 and beyond.
- 	  * NO - population not provided for some regions, e.g. Svalbard, Oslo, ...
+1. Region population counts go back to 2014, whereas the mortality data goes back to 2000 for some regions.
+2. The 2022 population (not provided) is linearly extrapolated the 2022 based on the 2020 - 2021 slope.
+3. During the year, the population is linearly interpolated to obtain an estimate of the population for a certain week of the year.
+4. In the original dataset there are death counts attributed to year 2021 week 99, which is ignored in the ASMR calculations for year 2021.
+5. The `UNK` age category is excluded from the ASMR calculation as well.
+6. Handling of dates... the data comes in year-week format, I did a quick & dirty "2021W11" -> "2021-01-01" + 11*weeks. This is only relevant for the `date` column to be used as a dimension for plotting. The dataset retains the original year & week columns.
+7. The dataset inherits bugs from the original data source, as well as new bugs that have been introduced during processing. **Beware - beta quality!**
+   * UK - mortality data not provided for years 2021 and beyond.
+   * NO - population not provided for some regions, e.g. Svalbard, Oslo, ...
 
 # An example how to use the dataset in R
 

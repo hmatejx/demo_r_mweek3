@@ -25,18 +25,11 @@ library(lubridate)
 # https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Fdemo_r_pjangrp3.tsv.gz
 # unzip these and put them in the same location as the script
 
-# Limitations of the current version
-# 1. Population counts only go back to 2014, whereas the mortality data goes back to 2000 for some regions
-# 2. The 2022 population is linearly extrapolated the 2022 based on the 2020-2021 slope
-# 3. During the year the population is linearly interpolated to get the population for a certain week
-# 4. There are some deaths attributed to week 99 which is included but ignored in the ASMR calculations
-# 5. Handling of dates... the data comes in year-week format, I did a quick & dirty "2021W11" -> "2021-01-01" + 11*7
-
 
 # load raw data
 mort <- fread("demo_r_mweek3.tsv", sep = "\t", header = T, stringsAsFactors = F)
 pop <- fread("demo_r_pjangrp3.tsv", sep = "\t", header = T, stringsAsFactors = F)
-regions <- read_xlsx("NUTS2021.xlsx", sheet = "NUTS & SR 2021", range = "A1:H2125")
+regions <- read_xlsx("NUTS2021-cleaned.xlsx", sheet = "NUTS & SR 2021", range = "A1:F1982")
 
 
 # split the first column (comma separated)
@@ -53,7 +46,7 @@ names(pop)[(ncol(pop) - 3):ncol(pop)] <- c("sex", "unit", "age", "geo")
 # pivot longer
 # mortality
 mort %>%
-  pivot_longer(`2022W26`:`2000W01`) %>%
+  pivot_longer(`2022W41`:`2000W01`) %>%
   select(-unit) -> mort
 # population
 pop %>% 
@@ -195,10 +188,19 @@ mort %>%
 rm(mort.ASMR)
 
 
+# pivot all ages wider 
+# (also a useful format, cost is losing information about count and population)
+mort %>%
+  select(-value, -population) %>% 
+  pivot_wider(names_from = age, values_from = rate) -> mort.pivoted
+
 # save data frame as FST format
 write_fst(mort, "demo_r_mweek3_pjangrp3.fst", compress = 99)
+write_fst(mort.pivoted, "demo_r_mweek3_pjangrp3-pivoted.fst", compress = 99)
 # save as TSV as well
 fwrite(mort, "demo_r_mweek3_pjangrp3.tsv", sep = "\t", quote = F, dec = ".", row.names = F)
+fwrite(mort.pivoted, "demo_r_mweek3_pjangrp3-pivoted.tsv", sep = "\t", quote = F, dec = ".", row.names = F)
+
 
 
 # clean-up memory afterwards
